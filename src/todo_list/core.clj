@@ -17,13 +17,14 @@
 (defn goodbye
   "A song to wish you goodbye"
   [request]
-  {:status 200
-   :body "<h1>Walking back to happiness</h1>
-          <p>Walking back to happiness with you</p>
-          <p>Said, Farewell to loneliness I knew</p>
-          <p>Laid aside foolish pride</p>
-          <p>Learnt the truth from tears I cried</p>"
-   :headers {}})
+  (html5 {:lang "en"}
+           [:head (include-js "myscript.js") (include-css "mystyle.css")]
+           [:body
+            [:div [:h1 {:class "info"} "Walking back to happiness"]]
+            [:div [:p "Walking back to happiness with you"]]
+            [:div [:p "Said, Farewell to loneliness I knew"]]
+            [:div [:p "Laid aside foolish pride"]]
+            [:div [:p "Learnt the truth from tears I cried"]]]))
 
 (defn about
   "Information about the website developer"
@@ -72,6 +73,7 @@
   (GET "/request-info" [] request-info)
   (GET "/hello/:name" [] hello)
   (GET "/calculator/:a/:op/:b" [] calculator)
+  (compojure.route/resources "/");;load in static resources, eg CSS from resources/public
   (not-found "Sorry, page not found"))
 
 (defn -main
