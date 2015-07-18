@@ -3,15 +3,16 @@
             [ring.middleware.reload :refer [wrap-reload]]
             [compojure.core :refer [defroutes GET]]
             [compojure.route :refer [not-found]]
-            [ring.handler.dump :refer [handle-dump]])
+            [ring.handler.dump :refer [handle-dump]]
+            [hiccup.core :refer :all]
+            [hiccup.page :refer :all])
   (:gen-class))
 
 (defn greet
   "A ring handler to process all requests sent to the webapp"
   [request]
-  {:status 200
-   :body "<h1>Hi people, again</h1>  <p>Welcome to your first Clojure app.  This message is returned regardless of the request, sorry<p>"
-   :headers {}})
+   (html [:h1 "Hello, Clojure World"]
+        [:p "Welcome to your first Clojure app, I now update automatically"]))
 
 (defn goodbye
   "A song to wish you goodbye"
