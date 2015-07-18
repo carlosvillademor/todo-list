@@ -6,6 +6,9 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                   [ring "1.4.0-beta2"]
                   [compojure "1.3.4"]]
+  :min-lein-version "2.0.0"
   :main todo-list.core
-  :profiles {:dev
-            {:main todo-list.core/-dev-main}})
+  :uberjar-name "todo-list.jar"
+  :profiles {:uberjar {:omit-source true
+                       :aot :all}
+             :dev {:main todo-list.core/-dev-main}})
